@@ -1,12 +1,13 @@
-const display =  document.querySelector(".display");
+const display = document.querySelector(".display");
 const buttons = document.querySelectorAll(".buttons button");
+
 let firstNumber = "";
 let operator = "";
 let lastNumber = "";
-buttons.forEach(function(button){
-    button.addEventListener("click" , function(event){
+buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
         const value = event.target.textContent;
-        if(event.target.dataset.action === "clear"){
+        if (event.target.dataset.action === "clear") {
             display.textContent = "0";
 
             firstNumber = "";
@@ -15,19 +16,19 @@ buttons.forEach(function(button){
 
             return;
         }
-        if (event.target.dataset.action === "calculate"){
-            if (firstNumber !=="" && operator !== "" && lastNumber !==""){
+        if (event.target.dataset.action === "calculate") {
+            if (firstNumber !== "" && operator !== "" && lastNumber !== "") {
                 let result;
-                if (operator == "+"){
+                if (operator === "+") {
                     result = Number(firstNumber) + Number(lastNumber);
                 }
-                else if (operator == "-"){
+                else if (operator === "-") {
                     result = Number(firstNumber) - Number(lastNumber);
                 }
-                else if (operator == "*"){
+                else if (operator === "*") {
                     result = Number(firstNumber) * Number(lastNumber);
                 }
-                else if(operator = "/"){
+                else if (operator === "/") {
                     result = Number(firstNumber) / Number(lastNumber);
                 }
                 display.textContent = result;
@@ -37,20 +38,20 @@ buttons.forEach(function(button){
             }
             return;
         }
-        if (event.target.dataset.operator){
-            if (firstNumber !== "" && operator ===""){
+        if (event.target.dataset.operator) {
+            if (firstNumber !== "" && operator === "") {
                 operator = event.target.dataset.operator;
                 display.textContent = operator;
             }
             return;
         }
-        if (operator === ""){
+        if (operator === "") {
             firstNumber = firstNumber + value;
             display.textContent = firstNumber;
         }
-        else{
+        else {
             lastNumber = lastNumber + value;
-            display.textContent =lastNumber; 
+            display.textContent = lastNumber;
         }
     });
 });
